@@ -1,0 +1,295 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[left=1.25in,right=1in,top=1in,bottom=1in]{geometry}
+%\newtheorem{chapter}{Chapter}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\usepackage{makeidx}
+\usepackage{enumerate}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{principle}[theorem]{Principle}
+\newtheorem{result}[theorem]{Result}
+\usepackage{setspace}
+\usepackage{hyperref}
+\setstretch{1.5}
+\hyphenpenalty
+\exhyphenpenalty
+\begin{document}
+    %\baselinestretch{1.5 cm}
+    
+%-----Title Page-------------------------------------------------
+
+\begin{titlepage}
+    {\centering{\LARGE{\textbf{CSV to DB converter}}}\\\vspace*{\fill} {\large{A project report\\[0.2cm] submitted by}}\\\vspace*{\fill} {\Large{\itshape Mohd Zaid}}\\(Class 12)\\ \vspace*{\fill}{\large under the supervision of}\\[0.2cm]
+    {\Large \textit{Mrs. Swati Saxena}}\\\vspace*{\fill}{\large in completion of project\\ submitted as yearly project} \\
+    {\Large For class 12.}  \\\vspace*{\fill} to the\\\vspace*{\fill}
+    
+    \includegraphics[scale=0.5]{logo.png}\\[0.5cm]
+    {\large Kendriya Vidyalaya \\ Andrews ganj} \\ November 2022
+
+\newpage
+
+    Kendriya Vidyalaya ANDREWS GANJ NEW DELHI\\
+    \vspace{1cm}
+    {\LARGE \textbf{DECLARATION}}\\}
+    \vspace{1cm}
+    I hereby declare that the work reported in the project titled \textbf{``CSV to DB converter"} submitted for the fulfillment of yearly project, is record of my work carried out under the supervision of \textit{Mrs. Swati Saxsena}.
+    
+    \vspace{3cm}
+    \begin{flushright}
+        {\Large Mohd Zaid}\\(Class 12)\\
+        Kendriya Vidyalaya\\Andrews Ganj ND\\November 2022
+    \end{flushright}	
+
+\newpage
+    {\centering KENDRIYA VIDYALAYA ANDREWS GANJ NEW DELHI\\ 
+    \vspace{1cm}
+    {\Large \textbf{CERTIFICATE}}\\}
+    \vspace{.50cm}		
+		
+    It is certified that \textbf{Mohd Zaid} has submitted project under my supervision for fulfillment of Project on the topic \textbf{``CSV to DB converter"}. It is further certified that the above candidate has carried out the project work under my guidance during the academic session 2022-2022.
+    
+    \vspace{2cm}
+    \begin{flushright}
+        {\Large {Mrs. Swati Saxsena}}\\
+        PGT Conputer Science\\Kendriya Vidyalaya\\New Delhi - 110025
+    \end{flushright}
+		
+\newpage
+    \begin{center}
+        {\LARGE \textbf{ACKNOWLEDGEMENT}}\\
+    \end{center}
+    \vspace{1cm}
+    As a matter of first importance, I offer my genuine thanks to my supervisor Mrs. Swati Saxsena, PGT CS, Kendriya Vidyalaya. I appreciate his support and help during the project work. Own Ideas/Acknowledgement\\
+    \vspace{1cm}
+    
+    \begin{flushright}
+        {\large Mohd Zaid}\\(Nov 2022**)\\
+    \end{flushright}
+
+\end{titlepage}
+
+%---------End of Title Page-----------------------------------------------
+
+%---------Contents Page---Don't Change-----------------------------------
+
+\newpage
+
+    \tableofcontents
+
+\newpage
+
+%----------Your Content Starts from here----------------------------------
+
+    \chapter{Introduction}
+	\vspace{1cm}
+    This is report of project named \textbf{CSV to DB converter} which is to be submitted as my yearly project for class 12.
+        \section{Goals}
+        Through this project i will be attempting to make a program which takes a \textbf{CSV}\texttt{(Comma separated values)} file as input and copies its content to \texttt{mySql Database} format.\\
+        \section{Preliminaries}
+        Some basic knowledge are required to build and understand this program.
+        \begin{enumerate}
+            \item \textbf{mySql} to edit tables and databases.
+            \item \textbf{Python} to code basic functionalities
+            \item \textbf{Csv} to read data from file.csv file.
+            \item \textbf{Loops} to iterate through rows.
+        \end{enumerate}
+ 
+\newpage
+	
+    \chapter{Header files and their uses} 
+        \vspace{.6cm}
+        \section{Frontend.stylers}
+        It is a local package. Made with intention to provide Interface inside terminal.\\
+        It is imported using command
+        \begin{verbatim}
+        from Frontend.Stylers import Console, SQL
+        \end{verbatim}
+        Both Console and SQL have calling functions which display respective informations.
+
+        \section{Csv}
+        This module is imported to read data from CSV file.
+        \begin{verbatim}
+        file data = csv.reader( csv file name.csv )
+        \end{verbatim}
+        
+        \section{sqlite3}
+        This module is imported to Create connection to on-disk file and add entries to it.
+        \begin{verbatim}
+        connection = sqlite3.connect( file name.db )
+        cursor = connection.cursor()
+        commands = cursor.execute( sqlite commands )
+        \end{verbatim}
+        
+        \section{os}
+        This module is imported to Check if file that has been provided by user exists or not. If not then shows error, continues otherwise.
+        \begin{verbatim}
+        if not os.path.exists( csv file path.csv ) : ...
+        \end{verbatim}
+        
+        \section{mySql}
+        This module is imported to Create connections to localhost database and execute commands in there.
+        \begin{verbatim}
+        try: import mysql except:ModuleNotFoundError:...
+        \end{verbatim}
+        this is imported in try and except block as it may not be present on user's system or maybe not correct version.\\
+        If it is present then again
+        \begin{verbatim}
+        connection=mysql.connector.connect(
+                                    host='localhost',
+                                    passwd=dbpasswd,
+                                    dbname=dbname )
+                                    
+        cusrsor = connection.cursor()
+        \end{verbatim}
+        All again in try and Except block because host may not be present or password may be wrong.
+        
+        
+        
+\newpage
+
+    \chapter{Code}
+        \vspace{3cm}
+        \section{Doc-strings and file information.} 
+        Explains code inside file.
+        \begin{verbatim}    
+    """
+        This programme converts csv entries into database entries.
+            -   User can choose to use server database or file `.db`.
+            -   Also supports xls to db entry in future.
+    """
+        
+    # Info
+    __version__ = 1
+    __author__  = 'Zaid'
+        \end{verbatim}
+\newpage
+
+        \section{Imports and exception handling}
+        \begin{verbatim}
+    # Imports from other files.
+    from Frontend.Stylers import Console, SQL
+    
+    # Imports from inbulit library.
+    import csv
+    import os
+    import sqlite3
+    
+    # Dependent Imports
+    # If mysql.conncetor (python) is not installed.
+    # Download - python pip install mysql-connector-python
+    try:
+        import mysql.connector
+    except ModuleNotFoundError as MNFErr:
+        ...
+        \end{verbatim}
+        \section{Menu}
+        \begin{verbatim}
+    options_1 = [
+    '\nWhere do you want to make entry:',
+    '*   [f] -  To a "db" file using sqlite.',
+    '*   [d] -  To a existing "db" in system.\n']
+    DB_TYPE: str = Console.Input(*options_1, sep='\n')
+        \end{verbatim}  
+\newpage
+        \section{Navigation and Inputs}
+        \begin{verbatim}
+    # making connection and cursor
+    if 'f' in DB_TYPE.lower():
+        # Gathering informations.
+        csv_file_path:str = Console.Input(...)
+        db_file_name:str  = Console.Input(...)
+        db_table_name:str = Console.Input(...)
+        # Checking informations.
+        if not os.path.exists('\\Database'): os.makedirs('\\Database')
+        # Processing to transfer data
+        connection = sqlite3.connect(f'Database\\{db_file_name}.db')
+        cursor     = connection.cursor()
+    elif 'd' in DB_TYPE.lower():
+        # Gathering informations
+        csv_file_path:str = Console.Input(...)
+        db_passwd   :str  = Console.Input(...)
+        db_name     :str  = Console.Input(...)
+        db_table_name:str = Console.Input(...)
+        # Creating cursor
+        try:
+            connection = mysql.connector.connect(...)
+            cusrsor = connection.cursor()
+        except NameError:
+            Console.Error(...)
+            Console.Log('Using sqlite')
+            connection = sqlite3.connect(f'Database\\{db_name}.db')
+            cursor     = connection.cursor()
+        except Exception as Exc:
+            Console.Error(...)
+            Console.Log('Using sqlite')
+            connection = sqlite3.connect(f'Database\\{db_name}.db')
+            cursor     = connection.cursor()\end{verbatim}  
+\newpage
+        \section{Commands}
+        \begin{verbatim}
+    # All commands
+    CREATE_TABLE = '''CREATE TABLE IF NOT EXISTS {} (
+                            {});'''
+    
+    COLUMNS = 'VARCHAR,\n\t'
+    
+    INSERT_INT = '''INSERT INTO {}
+                            VALUES ("{}")'''
+    
+    VALUES = '","'
+        \end{verbatim}
+        \section{Entry loop}
+        \begin{verbatim}
+    # Convertor
+    with open( csv_file_path, 'r' ) as csv_file:
+        file_data = csv.reader( csv_file )
+    
+        for index, data in enumerate(file_data):
+            try:
+                if index == 0:
+                    cursor.execute( CREATE_TABLE.format( ..., ... ) )
+                    continue
+                cursor.execute( INSERT_INT.format( ..., ... )) 
+            except Exception as Exc:
+                Console.Error( Exc )
+        
+        connection.commit()
+        \end{verbatim}
+\newpage
+
+    \chapter{Uses}
+        \vspace{1cm}
+        This program can be used to transfer large tabular entries from csv files to school database.
+        
+\newpage
+
+%--------End of Content----------------------------------------
+
+%--------Bibliography-------------------------------------
+
+\bibliographystyle{amsplain}
+
+    \begin{thebibliography}{10}
+		\bibitem{beer1} \href{https://www.w3schools.com/}{W3Schools} Tutorial on \href{https://www.w3schools.com/sql/}{SQL} used to learn and implement basic SQL codes.
+        
+		\bibitem{beer1} \href{https://www.w3schools.com/}{W3Schools} Tutorial on \href{https://www.w3schools.com/python/}{Python} used to learn and implement basic Python codes.
+        
+  
+		\bibitem{beer1} \href{https://www.w3schools.com/}{W3Schools} Tutorial on \href{https://www.w3schools.com/python/python_file_handling.asp}{Python file handling} used to learn and implement basic file handling codes.
+		
+    \end{thebibliography}
+
+%---------End of Bibliography---------------------------------
+
+\end{document}
