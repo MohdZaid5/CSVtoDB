@@ -114,28 +114,27 @@ if __name__ == '__main__':
 
 # Code blelow will not be executed as program is ended at line <97>
 # Possible implimentation of 'd'
-'''
-if 'd' in db_type.lower():
-    # Gathering informations
-    csv_file_path:str = Console.Input('Provide path to','*[csv]','file')
-    db_passwd   :str  = Console.Input('Enter your local','*mySql Password')
-    db_name     :str  = Console.Input('Provide name in which','*[db]','database info is to be saved')
-    db_table_name:str = Console.Input('Provide name of table inside','*[db]','where data is to be saved')
-    # Creating cursor
-    try:
-        connection = mysql.connector.connect(host='localhost',passwd=db_passwd,database=db_name)
-        cusrsor = connection.cursor()
-    except NameError:
-        Console.Error('Failed to establish connection', '*As mysql.connector is not properly installed.')
-        
-        Console.Log('Using sqlite')
-        connection = sqlite3.connect(f'Database\\{db_name}.db')
-        cursor     = connection.cursor()
 
-    except Exception as Exc:
-        Console.Error('Failed to fetch cursor as',f"*{Exc}")
-        
-        Console.Log('Using sqlite')
-        connection = sqlite3.connect(f'Database\\{db_name}.db')
-        cursor     = connection.cursor()
-'''
+#if 'd' in db_type.lower():
+#    # Gathering informations
+#    csv_file_path:str = Console.Input('Provide path to','*[csv]','file')
+#    db_passwd   :str  = Console.Input('Enter your local','*mySql Password')
+#    db_name     :str  = Console.Input('Provide name in which','*[db]','database info is to be saved')
+#    db_table_name:str = Console.Input('Provide name of table inside','*[db]','where data is to be saved')
+#    # Creating cursor
+#    try:
+#        connection = mysql.connector.connect(host='localhost',passwd=db_passwd,database=db_name)
+#        cusrsor = connection.cursor()
+#    except NameError:
+#        Console.Error('Failed to establish connection', '*As mysql.connector is not properly installed.')
+#        
+#        Console.Log('Using sqlite')
+#        connection = sqlite3.connect(f'Database\\{db_name}.db')
+#        cursor     = connection.cursor()
+#
+#    except Exception as Exc:
+#        Console.Error('Failed to fetch cursor as',f"*{Exc}")
+#        
+#        Console.Log('Using sqlite')
+#        connection = sqlite3.connect(f'Database\\{db_name}.db')
+#        cursor     = connection.cursor()
