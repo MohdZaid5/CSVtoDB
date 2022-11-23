@@ -17,7 +17,7 @@ inp = lambda text: input( f"{text}: {Colored.raw_text( Colors.VIOLET )}" )
 # Console Objects.
 Log = ConsoleObj(
     BACKGROUND = Colors.GRAY, FOREGROUND = Colors.BLACK, HIGHLIGHTS = Colors.GRAY,
-    ALIAS_NAME = 'Log', SHOW_TIME = True, CONSOLEOUT = True, LOG_TO_FIL = True, 
+    ALIAS_NAME = 'Log', SHOW_TIME = True, CONSOLEOUT = True, LOG_TO_FIL = False, 
     FILE_NAME='Delveloper.log')
 
 Error = ConsoleObj(

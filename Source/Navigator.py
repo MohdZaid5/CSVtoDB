@@ -42,7 +42,7 @@ cursor = connection.cursor()
 
 # Header
 SQL.output( '*Enter Sql Code for querry below', 'this is operatied in while loop')
-Console.log( 'Press',"[ctrl] + [c]", 'to exit')
+Console.Log( 'Press',"[ctrl] + [c]", 'to exit')
 
 # Main program
 while True:

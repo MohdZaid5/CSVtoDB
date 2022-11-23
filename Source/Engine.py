@@ -52,13 +52,16 @@ def menu():
     if 'd' in db_type.lower():
         Console.Error('This feature is','*[Not]','yet present.')
         Console.Log('Explicitly selecting', '[f]', 'as choice')
-    elif 'f' in db_type.lower():
+        db_type = 'f'
+    if 'f' in db_type.lower():
         # Gathering informations.
         csv_file_path= Console.Input('Provide path to','*[csv]','file')
         db_file_name = Console.Input('Provide name with which','*[db]','file is to be saved')
         db_table_name= Console.Input('Provide name of table inside','*[db]','where data is to be saved')
-        # Checking informations.
-        if not os.path.exists('\\Database'): os.makedirs('\\Database')
+        # Checking informations
+        # Database directory
+        if not os.path.exists('Database'):
+            os.makedirs('Database')
         # Processing to transfer data
         connection = sqlite3.connect(f'Database\\{db_file_name}.db')
         cursor     = connection.cursor()
@@ -70,10 +73,6 @@ menu()
 
 # If provided csv exists
 if not os.path.exists(csv_file_path): Console.Error('File',f'*{csv_file_path}','Does not exists.')
-
-# Database directory
-if not os.path.exists('.\Database'):
-    os.makedirs('.\Database')
 
 
 # All commands
@@ -108,9 +107,8 @@ with open( csv_file_path, 'r' ) as csv_file:
 SQL.output('Sucessfully Converted','*[csv]','data to','*[db] entry.')
 
 # End
-if __name__ == '__main__':
-    input()
-    quit()
+input()
+quit()
 
 # Code blelow will not be executed as program is ended at line <97>
 # Possible implimentation of 'd'
