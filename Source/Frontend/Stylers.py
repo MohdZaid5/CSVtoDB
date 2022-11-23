@@ -8,8 +8,8 @@ __author__  = 'Mohd Zaid'
 
 
 # Local imports.
-from Source.Core.Console import ConsoleObj
-from Source.Frontend.Color import Colored,Colors, rgb
+from Core.Console import ConsoleObj
+from Frontend.Color import Colored,Colors, rgb
 
 # behavioural functions.
 inp = lambda text: input( f"{text}: {Colored.raw_text( Colors.VIOLET )}" )

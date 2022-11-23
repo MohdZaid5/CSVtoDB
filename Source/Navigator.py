@@ -9,7 +9,7 @@ __version__ = 1
 __author__  = 'Mohd Zaid'
 
 # Imports from other files.
-from .Frontend.Stylers import Console, SQL
+from Frontend.Stylers import Console, SQL
 
 # Imports from inbulit library.
 import csv

@@ -7,7 +7,7 @@ __version__ = 1
 __author__  = 'Mohd Zaid'
 
 # Local imports
-from Source.Frontend.Color import Colors, Colored
+from Frontend.Color import Colors, Colored
 
 # Inbuilt
 from datetime import datetime
