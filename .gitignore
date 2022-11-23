@@ -130,6 +130,7 @@ dmypy.json
 
 # Custom files
 construction.py
+/.vscode
 
 # Testing Directory
 /test
