@@ -114,6 +114,7 @@ if __name__ == '__main__':
 
 # Code blelow will not be executed as program is ended at line <97>
 # Possible implimentation of 'd'
+'''
 if 'd' in db_type.lower():
     # Gathering informations
     csv_file_path:str = Console.Input('Provide path to','*[csv]','file')
@@ -137,4 +138,4 @@ if 'd' in db_type.lower():
         Console.Log('Using sqlite')
         connection = sqlite3.connect(f'Database\\{db_name}.db')
         cursor     = connection.cursor()
-
+'''
