@@ -133,4 +133,6 @@ construction.py
 /.vscode
 
 # Testing Directory
-/test
+/Test
+/Logs
+/Database
