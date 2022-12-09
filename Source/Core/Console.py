@@ -168,12 +168,12 @@ class Progress:
 
         self.VAL += value
         prcnt = int((self.VAL/self.MAX)*100)
-        self.__call__( '*Converting', f'({"|"*(prcnt)("-"*(100-prcnt))})', end='\r')
+        self.__call__( 'Converting', f'*|{"#"*(prcnt)}{("-"*(100-prcnt))}|', end='\r')
 
         if self.VAL == self.MAX:
-            self.__call__( '*Converting', f'({"|"*(prcnt)("-"*(100-prcnt))})', end='\n')
+            self.__call__( 'Converting', f'*|{"#"*(prcnt)}{("-"*(100-prcnt))}|')
 
 
-    def __call__(self, *args: Any, **kwds: Any) -> Any:
+    def __call__(self, *args: Any, end='\n') -> Any:
         
-        self.CONSOLE( *args, *kwds)
+        self.CONSOLE( *args, end=end)
