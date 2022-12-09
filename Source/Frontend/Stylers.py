@@ -8,7 +8,7 @@ __author__  = 'Mohd Zaid'
 
 
 # Local imports.
-from Core.Console import ConsoleObj
+from Core.Console import ConsoleObj, Progress
 from Frontend.Color import Colored,Colors, rgb
 
 # behavioural functions.
@@ -18,36 +18,37 @@ inp = lambda text: input( f"{text}: {Colored.raw_text( Colors.VIOLET )}" )
 Log = ConsoleObj(
     BACKGROUND = Colors.GRAY, FOREGROUND = Colors.BLACK, HIGHLIGHTS = Colors.GRAY,
     ALIAS_NAME = 'Log', SHOW_TIME = True, CONSOLEOUT = True, LOG_TO_FIL = False, 
-    FILE_NAME='Delveloper.log')
+    FILE_NAME='Delveloper.log'
+    )
 
 Error = ConsoleObj(
     BACKGROUND = Colors.CRIMSON, FOREGROUND = rgb(255,255,0), HIGHLIGHTS = Colors.RED1,
     ALIAS_NAME = 'Error', SHOW_TIME = True, CONSOLEOUT = True, LOG_TO_FIL = False # Set to true later
-)
+    )
 
 Input = ConsoleObj(
     BACKGROUND = Colors.BANANA, FOREGROUND = Colors.BLACK, HIGHLIGHTS = Colors.BANANA,
     ALIAS_NAME = 'Input', SHOW_TIME = True, CONSOLEOUT = True, LOG_TO_FIL = False, SPECIAL_BEHAVIOURS = True,
     OUTPUT_BEHAVIOUR = inp
-)
-
-# Console
-class Console:
-    Error   = Error
-    Input   = Input
-    Log     = Log
+    )
 
 # SQL Console Object.  
 sql_input = ConsoleObj(
     BACKGROUND = Colors.VIOLET, FOREGROUND = Colors.WHITE, HIGHLIGHTS = Colors.VIOLET,
     ALIAS_NAME = 'SQL', SHOW_TIME = True, CONSOLEOUT = True, LOG_TO_FIL = False, SPECIAL_BEHAVIOURS = True,
     OUTPUT_BEHAVIOUR = inp
-)
+    )
             
 sql_output = ConsoleObj(
     BACKGROUND = Colors.BANANA, FOREGROUND = Colors.BLACK, HIGHLIGHTS = Colors.BANANA,
     ALIAS_NAME = 'SQL', SHOW_TIME = True, CONSOLEOUT = True, LOG_TO_FIL = False
-)
+    )
+
+# Progress Console object
+process_out = ConsoleObj(
+    BACKGROUND = Colors.MAGENTA, FOREGROUND = Colors.WHITE, HIGHLIGHTS = Colors.MAGENTA,
+    ALIAS_NAME = 'SQL', SHOW_TIME = True, CONSOLEOUT = True, LOG_TO_FIL = False
+    )
 
 # Behavoural function for sql.
 def sql_in( text=None ):
@@ -58,6 +59,12 @@ def sql_in( text=None ):
         if ';' in i:
             break
     return '\n'.join(command)
+
+# Console
+class Console:
+    Error   = Error
+    Input   = Input
+    Log     = Log
 
 # SQL console
 class SQL:

@@ -15,7 +15,7 @@ from dataclasses import dataclass
 
 import os
 
-from typing import Callable
+from typing import Callable, Any
 # foo = lambda *args, **kwargs : None is used as callable
 
 @dataclass
@@ -53,7 +53,7 @@ class Logging:
 class ConsoleObj:
 
     '''
-    Thsi function can be used as basic build for any consile object
+    This function can be used as basic build for any console object
     `BACKGROUND`: Background `Color` of alias.
     `FOREGROUND`: Foreground `Color` of alias.
     `HIGHLIGHTS`: Highlight  `Color` of alias.
@@ -64,7 +64,7 @@ class ConsoleObj:
     `FILE_NAME `: Name of log file.
     `FOLDERNAME`: Name of folder in which it is to be logged
     `LOGGING_OBJ`: just a logging object.
-    `SPECIAL_BEHAVIOURS`: allows to add fuction in `__call__` to help better the behaviours.
+    `SPECIAL_BEHAVIOURS`: allows to add function in `__call__` to help better the behaviors.
 
     *`!` `@SPECIAL_BEHAVOIUR` Disables `CONSOLEOUT` and `LOG_TO_FIL` automatically.*
     '''
@@ -139,3 +139,41 @@ class ConsoleObj:
         if self.SPECIAL_BEHAVIOURS:
             if self.SHOW_TIME: return self.OUTPUT_BEHAVIOUR( text = f'{self.Alias}  {self.Time}  {sentence}' )
             else: return self.OUTPUT_BEHAVIOUR( text = f'{self.Alias}  {sentence}' )
+
+
+@dataclass
+class Progress:
+
+    """
+    This class Deals with showing progress bar.
+    `MAX`       : Maximum value of items
+    `MIN`       : Minimum value of items
+    `VAL`       : Current value of items
+    `Console`   : Console object.
+    """
+
+    # Basic values
+    MAX : int 
+    MIN : int
+    VAL : int
+
+    # Behaviors
+    CONSOLE : ConsoleObj | Callable
+
+    def __add__( self, value:int ):
+
+        """
+        Adding To progress
+        """
+
+        self.VAL += value
+        prcnt = int((self.VAL/self.MAX)*100)
+        self.__call__( '*Converting', f'({"|"*(prcnt)("-"*(100-prcnt))})', end='\r')
+
+        if self.VAL == self.MAX:
+            self.__call__( '*Converting', f'({"|"*(prcnt)("-"*(100-prcnt))})', end='\n')
+
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        
+        self.CONSOLE( *args, *kwds)
